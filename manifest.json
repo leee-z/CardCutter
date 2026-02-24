@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "CardCutter",
+  "version": "0.2.0",
+  "description": "Clip YouTube/Bilibili audio + CC into flashcards.",
+  "permissions": ["downloads", "activeTab", "scripting", "storage"],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://youtube.com/*",
+    "https://m.youtube.com/*",
+    "https://*.bilibili.com/*",
+    "http://*.bilibili.com/*",
+    "https://*.hdslb.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://youtube.com/*",
+        "https://m.youtube.com/*",
+        "https://*.bilibili.com/*",
+        "http://*.bilibili.com/*"
+      ],
+      "js": ["content/lame.min.js", "content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "sw.js"
+  },
+  "action": {
+    "default_title": "CardCutter"
+  }
+}
